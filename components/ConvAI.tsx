@@ -122,7 +122,7 @@ export function ConvAI() {
           <div className={"flex flex-col gap-y-4 text-center"}>
             <div
               className={cn(
-                "orb my-8 md:my-12 mx-8 md:mx-12 scale-[0.85] md:scale-100",
+                "orb my-8 md:my-12 mx-auto scale-[0.85] md:scale-100",
                 conversation.status === "connected" && conversation.isSpeaking
                   ? "orb-active animate-orb"
                   : conversation.status === "connected"
