@@ -15,7 +15,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="p-4 md:p-6">
-                        <div className="w-full h-[260px] md:h-[360px] lg:h-[520px] flex items-center justify-center">
+                        <div className="w-full h-auto md:min-h-[360px] lg:min-h-[520px] flex items-center justify-center">
                             <ConvAI />
                         </div>
                     </div>

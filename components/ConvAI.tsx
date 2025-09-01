@@ -107,8 +107,8 @@ export function ConvAI() {
   const layer3 = useMemo(() => genStarsFromSeed(25, 1, 2, 9001), []);
 
   return (
-    <div className={"flex justify-center items-center gap-x-4"}>
-      <Card className={"rounded-2xl"}>
+    <div className={"flex justify-center items-center gap-x-4 w-full"}>
+      <Card className={"rounded-2xl w-full max-w-[680px]"}>
         <CardContent>
           <CardHeader>
             <CardTitle className={"text-center text-orange-100 font-mono tracking-tighter opacity-50 "}>
@@ -122,7 +122,7 @@ export function ConvAI() {
           <div className={"flex flex-col gap-y-4 text-center"}>
             <div
               className={cn(
-                "orb my-16 mx-12",
+                "orb my-8 md:my-12 mx-8 md:mx-12 scale-[0.85] md:scale-100",
                 conversation.status === "connected" && conversation.isSpeaking
                   ? "orb-active animate-orb"
                   : conversation.status === "connected"
@@ -180,7 +180,7 @@ export function ConvAI() {
 
             <Button
               variant={"outline"}
-              className={"rounded-full"}
+              className={"rounded-full w-full md:w-auto"}
               size={"lg"}
               disabled={
                 conversation !== null && conversation.status === "connected"
@@ -191,7 +191,7 @@ export function ConvAI() {
             </Button>
             <Button
               variant={"outline"}
-              className={"rounded-full"}
+              className={"rounded-full w-full md:w-auto"}
               size={"lg"}
               disabled={conversation === null}
               onClick={stopConversation}
