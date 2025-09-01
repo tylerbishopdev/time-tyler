@@ -30,9 +30,22 @@ function genStarsFromSeed(count: number, minSize: number, maxSize: number, seed:
   return list;
 }
 
+const micConstraints: MediaStreamConstraints = {
+  audio: {
+    echoCancellation: { ideal: true },
+    noiseSuppression: { ideal: true },
+    autoGainControl: { ideal: true },
+    channelCount: { ideal: 1 },
+    sampleRate: 44100,
+    sampleSize: 16,
+  },
+};
+
 async function requestMicrophonePermission() {
   try {
-    await navigator.mediaDevices.getUserMedia({ audio: true });
+    const stream = await navigator.mediaDevices.getUserMedia(micConstraints);
+    // Immediately stop the tracks; we only needed permission + constraints setup.
+    stream.getTracks().forEach(t => t.stop());
     return true;
   } catch {
     console.error("Microphone permission denied");
@@ -73,7 +86,15 @@ export function ConvAI() {
       return;
     }
     const signedUrl = await getSignedUrl();
-    const conversationId = await conversation.startSession({ signedUrl });
+    const conversationId = await conversation.startSession({
+      signedUrl,
+      // Prefer TTS to complete before allowing barge-in
+      enableBargeIn: false,
+      // Lower VAD sensitivity so short pauses don't end TTS early
+      vadThreshold: 0.6,
+      // Pass mic constraints to SDK if supported
+      mediaStreamConstraints: micConstraints,
+    } as any);
     console.log(conversationId);
   }
 

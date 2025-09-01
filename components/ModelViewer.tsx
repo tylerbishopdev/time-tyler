@@ -76,7 +76,7 @@ useGLTF.preload("/models/character.glb");
 
 export function ModelViewer() {
     return (
-        <div className="w-full h-full object-fill">
+        <div className="w-full h-full object-fill bg-[url('/bgty7.png')] bg-cover bg-center opacity-70 ">
             <Canvas camera={{ position: [0, 1.2, 3], fov: 45 }} shadows>
                 <AmbientLight intensity={0.5} />
                 <DirectionalLight position={[5, 5, 5]} intensity={1.2} castShadow />

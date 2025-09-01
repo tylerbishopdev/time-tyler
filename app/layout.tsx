@@ -3,7 +3,7 @@ import "./globals.css";
 import { ShaderAnimation } from "@/components/ui/shader-animation";
 
 export const metadata: Metadata = {
-    title: "ConvAI",
+    title: "Tyler From Future",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
