@@ -42,3 +42,7 @@ next-env.d.ts
 
 # jetbrains
 .idea
+
+# all local env files except the template
+.env*
+!.env.example
